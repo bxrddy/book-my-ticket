@@ -11,8 +11,8 @@ body {
 .jumbotron {
 	background-image: url(../images/movie.jpg);
 	color: #fff;
-	padding-top: 150px;
-	padding-bottom: 150px;
+	padding-top: 145px;
+	padding-bottom: 145px;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 }
