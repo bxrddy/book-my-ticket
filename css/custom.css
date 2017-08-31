@@ -1,7 +1,6 @@
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
   padding-top: 2rem;
-  font-family: 'Ubuntu', sans-serif;
 }
 
 .fixed-top {
@@ -9,12 +8,13 @@ body {
 }
 
 .jumbotron {
-	background-image: url(../images/movie.jpg);
+	background-image: url(../images/travel.jpg);
 	color: #fff;
 	padding-top: 145px;
 	padding-bottom: 145px;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+	/*background-position: left;*/
 }
 
 .display-3 {
@@ -25,6 +25,34 @@ body {
 	margin-top: 30px;
 	border-radius: 40px;
 }
+
+.btn-outline-primary {
+	margin-right: 15px;
+}
+
+#register {
+	padding-top: 65px;
+}
+
+#registerSubmit {
+	font-size: 15px;
+	cursor: pointer;
+}
+
+.btn-primary:hover {
+	background-color: #2DB671;
+	border-color: #2DB671;
+}
+
+input[type="checkbox"]{
+	transform: scale(1.25);
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+#footer {
+	margin-top: 55px;
+} 
 
 /*.bg-faded {
 	background-color: #ececec;

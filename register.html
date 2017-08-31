@@ -41,7 +41,7 @@
 		    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
 		      	<ul class="navbar-nav mr-auto">
 		        	<li class="nav-item active">
-		            	<a class="nav-link active" href=""> HOME</a>
+		            	<a class="nav-link active" href="index.html"> HOME</a>
 		          	</li>
 		          	<li class="nav-item dropdown active">
 		            	<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> SERVICES</a>
@@ -57,67 +57,81 @@
                <li class="nav-item">
                   <a class="btn btn-outline-primary" href="#" role="button"><strong>LOGIN</strong></a>
                </li>
-               <li class="nav-item">
-                  <a class="btn btn-outline-primary" href="register.html" role="button"><strong>REGISTER</strong></a>
-               </li>
              </ul>
 		        </form>
 		    </div>
 		
     </nav>
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
-        <h1 class="display-3 animated fadeInDown">Oops...</h1>
-        <h1 class="display-5 animated fadeInDown">Under construction</h1>
-        <h1 class="display-5 animated fadeInDown">Coming Soon!</h1>
-       
-       <!--  <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p> -->
-       <button type="button" class="btn btn-lg btn-primary animated fadeInLeft">Learn More &raquo;</button>
+    <div class="container animated fadeIn">
+    <section id="register">
+      <div class="card">
+        <h3 class="card-header">Register Here ...</h3>
+        <div class="card-block">
+          <h6 class="card-title">Fill out the registration form.</h6>
+            <hr>
+    <form>
+      <div class="form-group">
+        <label for="name">NAME:</label>
+        <input type="email" class="form-control" id="name" placeholder="Enter your name">
       </div>
-    </div>
-
-    <div class="container">
-      <hr>
-      <!-- Example row of columns -->
-      <div class="row">
-		<div class="col-sm-12">
-			<h2 align="center" class="animated fadeIn">#OneTicket - Be Smart!</h2><br>
-		</div>      	
+      <div class="form-group">
+        <label for="emailaddress">EMAIL ADDRESS:</label>
+        <input type="email" class="form-control" id="emailaddress" placeholder="Enter your email">
+        <small class="form-text text-muted">We'll never share your email with anyone else.</small>
       </div>
-      <center>
+      <div class="form-group">
+        <label for="password">PASSWORD:</label>
+        <input type="password" class="form-control" id="password" placeholder="Enter new password">
+      </div>
       <div class="row">
-        	<div class="col-lg-4 col-xs-6">
-                <div class="thumbnail">
-                    <img src="images/train.png" height="105" width="170" style="margin-top: 20px; margin-bottom: 7%;" class="animated fadeIn">
-                    <h3 style="font-size: 23px; margin-top: 10px;" class="animated fadeIn"><strong>TRAIN</strong></h3>
-                    <p style="font-size: 18px;" class="animated fadeIn">There's something about the sound of a train that's very romantic and nostalgic and hopeful.</p>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-sm-6">
-                <div class="thumbnail">
-                    <img src="images/bus.jpg" height="105" width="105" style="margin-top: 20px; margin-bottom: 7%;" class="animated fadeIn">
-                    <h3 style="font-size: 23px; margin-top: 10px;" class="animated fadeIn"><strong>BUS</strong></h3>
-                    <p style="font-size: 18px;" class="animated fadeIn">Know how to travel from your town to a nearby town without a car, either by bus or by rail.</p>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-sm-6">
-                <div class="thumbnail img-responsive">
-                    <img src="images/taxi.png" height="105" width="105" style="margin-top: 20px; margin-bottom: 7%;" class="animated fadeIn">
-                    <h3 style="font-size: 23px; margin-top: 10px;" class="animated fadeIn"><strong>CAB</strong></h3>
-                    <p style="font-size: 18px;" class="animated fadeIn">An optimist is a driver who thinks that empty space at the curb won't have a hydrant beside it.</p>
-                </div>
-            </div>                 
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="gender">GENDER:</label>
+            <select class="form-control custom-select" id="gender">
+              <option selected hidden>Select your gender</option>
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
         </div>
-        </center>
-      <hr>
-
-      <footer>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="dateofbirth">DOB:</label>
+            <input class="form-control" type="date" value="2017-09-01" id="dateofbirth">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="city">CITY:</label>
+            <input class="form-control" type="text" id="city" placeholder="Enter your city">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="state">STATE:</label>
+            <input class="form-control" type="text" id="state" placeholder="Enter your state">
+          </div>
+        </div>
+      </div>
+      <div class="form-check">
+        <label class="checkbox">
+          <input type="checkbox" class="checkbox">
+          I accept all the Terms &amp; Conditions.
+        </label>
+      </div>
+      <button type="submit" class="btn btn-primary" id="registerSubmit">REGISTER</button>
+    </form>
+      
+        </div>
+      </div>
+      </section>
+      <section id="footer">
+  <hr>
+     <footer>
         <p>&copy; Brijesh 2017</p>
       </footer>
+  </section>
     </div> <!-- /container -->
 
 
