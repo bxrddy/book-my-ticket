@@ -1,6 +1,7 @@
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
   padding-top: 2rem;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .fixed-top {
@@ -30,7 +31,7 @@ body {
 	margin-right: 15px;
 }
 
-#register {
+#padtop {
 	padding-top: 65px;
 }
 
@@ -53,6 +54,17 @@ input[type="checkbox"]{
 #footer {
 	margin-top: 55px;
 } 
+
+#padtop .card {
+	width: 50%;
+	text-align: left;	
+}
+
+@media (max-width: 1024px) {
+	#padtop .card {
+		width: 100%;
+	}
+}
 
 /*.bg-faded {
 	background-color: #ececec;
