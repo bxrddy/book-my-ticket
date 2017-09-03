@@ -66,6 +66,29 @@ input[type="checkbox"]{
 	}
 }
 
+@media (max-width: 420px) {
+	.jumbotron {
+		padding-top: 100px;
+		padding-bottom: 70px;
+	}
+	h2 {
+		font-size: 23px;
+	}
+	.btn-outline-primary {
+		margin-bottom: 13px;
+	}
+	.display-3 {
+		font-size: 45px;
+	}
+	.display-5 {
+		font-size: 30px;	
+	}
+	.btn-lg {
+		font-size: 16px;
+		margin-top: 15px;
+	}
+}
+
 /*.bg-faded {
 	background-color: #ececec;
 }*/
