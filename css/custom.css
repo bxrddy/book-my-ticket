@@ -40,6 +40,12 @@ body {
 	cursor: pointer;
 }
 
+#recharge {
+	font-size: 15px;
+	cursor: pointer;
+	margin-top: 37px;
+}
+
 .btn-primary:hover {
 	background-color: #2DB671;
 	border-color: #2DB671;
@@ -65,9 +71,16 @@ input[type="checkbox"]{
 }
 
 .card img {
-	width: 90%;
-	padding-left: 45px;
-	padding-top: 40px;
+	width: 240px;
+    padding-left: 70px;
+    padding-top: 40px;
+    margin-bottom: 15px;
+    margin-top: 20px;
+    height: 220px;
+}
+
+.text-center {
+	margin-top: 20px;
 }
 
 @media (max-width: 1024px) {
@@ -75,9 +88,13 @@ input[type="checkbox"]{
 		width: 100%;
 	}
 	.card img {
-		width: 85%;
-		padding-left: 60px !important; 
-		padding-top: 0px !important;
+	    width: 240px;
+	    height: 185px;
+	    padding-left: 70px !important;
+	    padding-top: 15px !important;
+	}
+	.text-center {
+		font-size: 30px;
 	}
 }
 
