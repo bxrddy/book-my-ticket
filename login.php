@@ -1,4 +1,8 @@
 
+<?php include("includes/db.php"); ?>
+<?php include("includes/functions.php"); ?>
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +14,7 @@
     <meta name="author" content="">
     <link rel="icon" href="images/favicon.ico">
 
-    <title>Book Ticket | Book My Ticket</title>
+    <title>Login | Book My Ticket</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
@@ -41,7 +45,7 @@
 		    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
 		      	<ul class="navbar-nav mr-auto">
 		        	<li class="nav-item active">
-		            	<a class="nav-link active" href="index.html"> HOME</a>
+		            	<a class="nav-link active" href="index.php"> HOME</a>
 		          	</li>
 		          	<!-- <li class="nav-item dropdown active">
 		            	<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> SERVICES</a>
@@ -51,24 +55,98 @@
 		              		<a class="dropdown-item" href="#">Metro</a>
 		            	</div>
 		          	</li> -->
-                <li class="nav-item active">
-                  <a class="nav-link active"> BOOK TICKET</a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link active" href="user.html"> USER PROFILE</a>
-                </li>
 		        </ul>
+		        <form class="form-inline my-2 my-lg-0">
+             <ul class="navbar-nav mr-auto">
+               <li class="nav-item">
+                  <a class="btn btn-outline-primary" href="register.php" role="button"><strong>REGISTER</strong></a>
+               </li>
+             </ul>
+		        </form>
 		    </div>
 		
     </nav>
 
-    <div class="container">
-      
-    <hr>
-      <footer>
-        <p>&copy; Brijesh 2017</p>
-      </footer>
-    </div>
+    <div class="container animated fadeIn">
+
+    	<section id="padtop">
+    	<center>
+	    	<div class="card">
+	  			<h3 class="card-header">Login Here...</h3>
+	  			<div class="card-block">
+	    			<h6 class="card-title">Enter your username and password.</h6>
+	    			<hr>
+
+	    			<?php 
+
+	    				if (isset($_POST['login'])) {
+	    					
+	    					$username = mysqli_real_escape_string($connection, $_POST['username']);
+	    					$email    = mysqli_real_escape_string($connection, $_POST['username']);
+               				$password = $_POST['password'];
+
+               				$query = "SELECT * FROM registration WHERE name = '$username' OR email = '$email'";
+               				$result = mysqli_query($connection, $query);
+
+               				$count = mysqli_num_rows($result);
+               				if ($count < 1) {
+               					echo
+									"<div class='alert alert-danger' role='alert'>
+										<strong>Oh snap!</strong> You need to register first.
+									</div>";
+               				}
+               				else {
+               					if ($row = mysqli_fetch_assoc($result)) {
+               						// $hashedPasswordCheck = password_verify($password, $row['password']);
+               						if ($password != $row['password']) {
+		               					echo
+											"<div class='alert alert-danger' role='alert'>
+												<strong>Oh snap!</strong> You entered a wrong password.
+											</div>";
+               						}
+               						else {
+
+               							$_SESSION['id'] = $row['id'];
+               							$_SESSION['username'] = $row['name'];
+
+               							header("Location: user.php");
+               							exit();
+
+               						}
+               					}
+               				}
+
+	    				}
+
+	    			?>
+
+	    			<form action="" method="post">
+		              <div class="form-group">
+		                <label for="name">USERNAME:</label>
+		                <input type="text" class="form-control" id="name" placeholder="Enter your username" required="true" name="username">
+		              </div>
+		              <div class="form-group">
+		                <label for="password">PASSWORD:</label>
+		                <input type="password" class="form-control" id="password" placeholder="Enter your password" required="true" name="password">
+		              </div>
+		              <div class="form-check">
+		                <label class="checkbox">
+		                <input type="checkbox" class="checkbox"> &nbsp;Keep me signed in</label>
+		              </div>
+		              <button type="submit" class="btn btn-primary" id="registerSubmit" name="login">LOGIN</button>
+		            </form>
+	  			</div>
+			</div>
+		</center>
+		</section>
+
+   		<section id="footer">
+	  		<hr>
+	    	<footer>
+	    		<p>&copy; Brijesh 2017</p>
+	    	</footer>
+	  	</section>
+    </div> <!-- /container -->
 
 
     <!-- Bootstrap core JavaScript

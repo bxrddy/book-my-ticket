@@ -1,4 +1,6 @@
 
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,7 +43,7 @@
 		    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
 		      	<ul class="navbar-nav mr-auto">
 		        	<li class="nav-item active">
-		            	<a class="nav-link active" href="index.html"> HOME</a>
+		            	<a class="nav-link active" href="index.php"> HOME</a>
 		          	</li>
 		          	<!-- <li class="nav-item dropdown active">
 		            	<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> SERVICES</a>
@@ -52,12 +54,23 @@
 		            	</div>
 		          	</li> -->
                 <li class="nav-item active">
-                  <a class="nav-link active" href="bookTicket.html"> BOOK TICKET</a>
+                  <a class="nav-link active" href="bookTicket.php"> BOOK TICKET</a>
                 </li>
                 <li class="nav-item active">
                   <a class="nav-link active"> USER PROFILE</a>
                 </li>
 		        </ul>
+            <div class="form-inline my-2 my-lg-0">
+              
+              <?php 
+
+                if (isset($_SESSION['id'])) {
+                  echo "Hello, " . $_SESSION['username'] . "!";
+                }
+
+              ?>
+
+            </div>
 		    </div>
 		
     </nav>
@@ -78,7 +91,7 @@
                   <form>
                     <div class="form-group">
                       <label for="name">NAME:</label>
-                      <input type="text" class="form-control" id="name" placeholder="Brijesh Reddy" disabled>
+                      <input type="text" class="form-control" id="name" placeholder="Brijesh" disabled>
                     </div>
                     <div class="form-group">
                       <label for="emailaddress">EMAIL ADDRESS:</label>

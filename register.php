@@ -44,7 +44,7 @@
 		    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
 		      	<ul class="navbar-nav mr-auto">
 		        	<li class="nav-item active">
-		            	<a class="nav-link active" href="index.html"> HOME</a>
+		            	<a class="nav-link active" href="index.php"> HOME</a>
 		          	</li>
 		          	<!-- <li class="nav-item dropdown active">
 		            	<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> SERVICES</a>
@@ -58,7 +58,7 @@
 		        <form class="form-inline my-2 my-lg-0">
              <ul class="navbar-nav mr-auto">
                <li class="nav-item">
-                  <a class="btn btn-outline-primary" href="login.html" role="button"><strong>LOGIN</strong></a>
+                  <a class="btn btn-outline-primary" href="login.php" role="button"><strong>LOGIN</strong></a>
                </li>
              </ul>
 		        </form>
@@ -81,7 +81,7 @@
 
                 $name     =  mysqli_real_escape_string($connection, $_POST['name']);
                 $email    =  mysqli_real_escape_string($connection, $_POST['email']);
-                $password =  md5($_POST['password']);
+                $password =  $_POST['password'];
 
                 // INSERT DATA
                 insert_data($name, $email, $password);

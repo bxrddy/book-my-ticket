@@ -1,4 +1,18 @@
 
+<?php session_start(); ?>
+
+<?php 
+  
+  if (isset($_POST['logout'])) {
+    session_start();
+    session_unset();
+    session_destroy();
+    header("Location: index.php");
+    exit();
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,16 +66,38 @@
 		            	</div>
 		          	</li>
 		        </ul>
-		        <form class="form-inline my-2 my-lg-0">
-             <ul class="navbar-nav mr-auto">
-               <li class="nav-item">
-                  <a class="btn btn-outline-primary" href="login.html" role="button"><strong>LOGIN</strong></a>
-               </li>
-               <li class="nav-item">
-                  <a class="btn btn-outline-primary" href="register.php" role="button"><strong>REGISTER</strong></a>
-               </li>
-             </ul>
-		        </form>
+
+            <?php 
+
+              if (isset($_SESSION['id'])) {
+                echo
+                    '<div class="form-inline my-2 my-lg-0 text-uppercase">
+                      Hello &nbsp;' . $_SESSION['username'] . ' ! &nbsp; &nbsp;
+                    </div>
+                    <form class="form-inline my-2 my-lg-0" action="" method="post">
+                       <ul class="navbar-nav mr-auto">
+                          <li class="nav-item">
+                            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" name="logout"><strong>LOGOUT</strong></button>
+                          </li>
+                       </ul>
+                    </form>';
+              }
+              else {
+                echo
+                    '<form class="form-inline my-2 my-lg-0">
+                       <ul class="navbar-nav mr-auto">
+                         <li class="nav-item">
+                            <a class="btn btn-outline-primary" href="login.php" role="button"><strong>LOGIN</strong></a>
+                         </li>
+                         <li class="nav-item">
+                            <a class="btn btn-outline-primary" href="register.php" role="button"><strong>REGISTER</strong></a>
+                         </li>
+                       </ul>
+                      </form>';
+              }
+
+            ?>
+
 		    </div>
 		
     </nav>

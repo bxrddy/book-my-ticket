@@ -1,4 +1,6 @@
 
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,7 +12,7 @@
     <meta name="author" content="">
     <link rel="icon" href="images/favicon.ico">
 
-    <title>Login | Book My Ticket</title>
+    <title>Book Ticket | Book My Ticket</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
 
@@ -41,7 +43,7 @@
 		    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
 		      	<ul class="navbar-nav mr-auto">
 		        	<li class="nav-item active">
-		            	<a class="nav-link active" href="index.html"> HOME</a>
+		            	<a class="nav-link active" href="index.php"> HOME</a>
 		          	</li>
 		          	<!-- <li class="nav-item dropdown active">
 		            	<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> SERVICES</a>
@@ -51,54 +53,24 @@
 		              		<a class="dropdown-item" href="#">Metro</a>
 		            	</div>
 		          	</li> -->
+                <li class="nav-item active">
+                  <a class="nav-link active"> BOOK TICKET</a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link active" href="user.php"> USER PROFILE</a>
+                </li>
 		        </ul>
-		        <form class="form-inline my-2 my-lg-0">
-             <ul class="navbar-nav mr-auto">
-               <li class="nav-item">
-                  <a class="btn btn-outline-primary" href="register.php" role="button"><strong>REGISTER</strong></a>
-               </li>
-             </ul>
-		        </form>
 		    </div>
 		
     </nav>
 
-    <div class="container animated fadeIn">
-
-    	<section id="padtop">
-    	<center>
-	    	<div class="card">
-	  			<h3 class="card-header">Login Here...</h3>
-	  			<div class="card-block">
-	    			<h6 class="card-title">Enter your username and password.</h6>
-	    			<hr>
-	    			<form>
-		              <div class="form-group">
-		                <label for="name">USERNAME:</label>
-		                <input type="text" class="form-control" id="name" placeholder="Enter your username">
-		              </div>
-		              <div class="form-group">
-		                <label for="password">PASSWORD:</label>
-		                <input type="password" class="form-control" id="password" placeholder="Enter your password">
-		              </div>
-		              <div class="form-check">
-		                <label class="checkbox">
-		                <input type="checkbox" class="checkbox"> &nbsp;Keep me signed in</label>
-		              </div>
-		              <button type="submit" class="btn btn-primary" id="registerSubmit">LOGIN</button>
-		            </form>
-	  			</div>
-			</div>
-		</center>
-		</section>
-
-   		<section id="footer">
-	  		<hr>
-	    	<footer>
-	    		<p>&copy; Brijesh 2017</p>
-	    	</footer>
-	  	</section>
-    </div> <!-- /container -->
+    <div class="container">
+      
+    <hr>
+      <footer>
+        <p>&copy; Brijesh 2017</p>
+      </footer>
+    </div>
 
 
     <!-- Bootstrap core JavaScript
