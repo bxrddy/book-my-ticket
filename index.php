@@ -1,17 +1,8 @@
 
+<?php include("includes/db.php"); ?>
+<?php include("includes/functions.php"); ?>
+
 <?php session_start(); ?>
-
-<?php 
-  
-  if (isset($_POST['logout'])) {
-    session_start();
-    session_unset();
-    session_destroy();
-    header("Location: index.php");
-    exit();
-  }
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -54,47 +45,30 @@
 
 		    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
 		      	<ul class="navbar-nav mr-auto">
-		        	<li class="nav-item active">
-		            	<a class="nav-link active" href=""> HOME</a>
-		          	</li>
-		          	<li class="nav-item dropdown active">
-		            	<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> SERVICES</a>
-		            	<div class="dropdown-menu" aria-labelledby="dropdown01">
-		             		<a class="dropdown-item" href="#">Train</a>
-		              		<a class="dropdown-item" href="#">Bus</a>
-		              		<a class="dropdown-item" href="#">Metro</a>
-		            	</div>
-		          	</li>
+              
+              <?php 
+
+                if (isset($_SESSION['id'])) {
+                  echo
+                      '<li class="nav-item active">
+                        <a class="nav-link active" href=""> HOME</a>
+                       </li>
+                       <li class="nav-item active">
+                        <a class="nav-link active" href="bookTicket.php"> BOOK TICKET</a>
+                       </li>
+                       <li class="nav-item active">
+                        <a class="nav-link active" href="user.php"> USER PROFILE</a>
+                       </li>';
+                }
+
+              ?>
+
 		        </ul>
 
-            <?php 
+            <?php
 
-              if (isset($_SESSION['id'])) {
-                echo
-                    '<div class="form-inline my-2 my-lg-0 text-uppercase">
-                      Hello &nbsp;' . $_SESSION['username'] . ' ! &nbsp; &nbsp;
-                    </div>
-                    <form class="form-inline my-2 my-lg-0" action="" method="post">
-                       <ul class="navbar-nav mr-auto">
-                          <li class="nav-item">
-                            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" name="logout"><strong>LOGOUT</strong></button>
-                          </li>
-                       </ul>
-                    </form>';
-              }
-              else {
-                echo
-                    '<form class="form-inline my-2 my-lg-0">
-                       <ul class="navbar-nav mr-auto">
-                         <li class="nav-item">
-                            <a class="btn btn-outline-primary" href="login.php" role="button"><strong>LOGIN</strong></a>
-                         </li>
-                         <li class="nav-item">
-                            <a class="btn btn-outline-primary" href="register.php" role="button"><strong>REGISTER</strong></a>
-                         </li>
-                       </ul>
-                      </form>';
-              }
+              navbar_login();
+              logout();
 
             ?>
 

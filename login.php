@@ -77,48 +77,7 @@
 	    			<h6 class="card-title">Enter your username and password.</h6>
 	    			<hr>
 
-	    			<?php 
-
-	    				if (isset($_POST['login'])) {
-	    					
-	    					$username = mysqli_real_escape_string($connection, $_POST['username']);
-	    					$email    = mysqli_real_escape_string($connection, $_POST['username']);
-               				$password = $_POST['password'];
-
-               				$query = "SELECT * FROM registration WHERE name = '$username' OR email = '$email'";
-               				$result = mysqli_query($connection, $query);
-
-               				$count = mysqli_num_rows($result);
-               				if ($count < 1) {
-               					echo
-									"<div class='alert alert-danger' role='alert'>
-										<strong>Oh snap!</strong> You need to register first.
-									</div>";
-               				}
-               				else {
-               					if ($row = mysqli_fetch_assoc($result)) {
-               						// $hashedPasswordCheck = password_verify($password, $row['password']);
-               						if ($password != $row['password']) {
-		               					echo
-											"<div class='alert alert-danger' role='alert'>
-												<strong>Oh snap!</strong> You entered a wrong password.
-											</div>";
-               						}
-               						else {
-
-               							$_SESSION['id'] = $row['id'];
-               							$_SESSION['username'] = $row['name'];
-
-               							header("Location: user.php");
-               							exit();
-
-               						}
-               					}
-               				}
-
-	    				}
-
-	    			?>
+	    			<?php login(); ?>
 
 	    			<form action="" method="post">
 		              <div class="form-group">

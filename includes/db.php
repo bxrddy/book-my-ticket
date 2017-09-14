@@ -14,9 +14,6 @@
 	
 	if (!$connection) {
 		die("Connection cannot be established" . mysqli_error($connection));
-	} 
-	else {
-		echo "Connection established";
 	}
-
+	
 ?>

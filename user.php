@@ -1,4 +1,7 @@
 
+<?php include("includes/db.php"); ?>
+<?php include("includes/functions.php"); ?>
+
 <?php session_start(); ?>
 
 <!DOCTYPE html>
@@ -60,17 +63,27 @@
                   <a class="nav-link active"> USER PROFILE</a>
                 </li>
 		        </ul>
-            <div class="form-inline my-2 my-lg-0">
               
               <?php 
 
                 if (isset($_SESSION['id'])) {
-                  echo "Hello, " . $_SESSION['username'] . "!";
+                  echo
+                       '<div class="form-inline my-2 my-lg-0 text-uppercase">
+                         <strong>Hello &nbsp;' . $_SESSION['username'] . ' ! &nbsp; &nbsp;</strong>
+                        </div>
+                        <form class="form-inline my-2 my-lg-0" action="" method="post">
+                          <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                              <button class="btn btn-outline-primary my-2 my-sm-0" type="submit" name="logout" style="cursor: pointer;"><strong>LOGOUT</strong></button>
+                            </li>
+                          </ul>
+                        </form>';
                 }
+
+                logout();
 
               ?>
 
-            </div>
 		    </div>
 		
     </nav>
