@@ -97,31 +97,35 @@
             <div class="card-block">
 
               <div class="row">
-              <!-- <div class="col-lg-4">
-                  <img src="images/user2.jpg">
-                </div> -->
                 <div class="col-lg-12">
-                  <form>
+
+                  <?php 
+
+                    update_user_profile();
+
+                  ?>
+
+                  <form action="" method="post">
                     <div class="form-group">
                       <label for="name">NAME:</label>
-                      <input type="text" class="form-control" id="name" placeholder="Brijesh" disabled>
+                      <input type="text" class="form-control" value="" id="name" disabled>
                     </div>
                     <div class="form-group">
                       <label for="emailaddress">EMAIL ADDRESS:</label>
-                      <input type="email" class="form-control" id="emailaddress" placeholder="brijesh.reddy15@siesgst.ac.in" disabled>
+                      <input type="email" class="form-control" id="emailaddress" disabled>
                       <small class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
                     <div class="row">
                       <div class="col-md-8">
                         <div class="form-group">
                           <label for="address">ADDRESS:</label>
-                          <input type="text" class="form-control" id="address" placeholder="Enter your address">
+                          <input type="text" class="form-control" id="address" placeholder="Enter your address" name="address">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label for="pincode">PINCODE:</label>
-                          <input type="text" class="form-control" id="pincode" placeholder="Enter your pincode">
+                          <input type="text" class="form-control" id="pincode" placeholder="Enter your pincode" name="pincode">
                         </div>
                       </div>
                     </div>
@@ -130,7 +134,7 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label for="gender">GENDER:</label>
-                          <select class="form-control custom-select" id="gender">
+                          <select class="form-control custom-select" id="gender" name="gender">
                             <option selected hidden>Select</option>
                             <option>Male</option>
                             <option>Female</option>
@@ -140,13 +144,13 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label for="city">CITY:</label>
-                          <input class="form-control" type="text" id="city" placeholder="Enter your city">
+                          <input class="form-control" type="text" id="city" placeholder="Enter your city" name="city">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label for="state">STATE:</label>
-                          <input class="form-control" type="text" id="state" placeholder="Enter your state">
+                          <input class="form-control" type="text" id="state" placeholder="Enter your state" name="state">
                         </div>
                       </div>
                     </div> 
@@ -155,7 +159,7 @@
                         <input type="password" class="form-control" id="password" placeholder="Enter new password"> -->
                       <a href="">Change Password?</a>
                     </div>
-                     <button type="submit" class="btn btn-primary" id="registerSubmit">UPDATE</button>
+                     <button type="submit" class="btn btn-primary" id="registerSubmit" name="update">UPDATE</button>
                   </form>
                 </div>
               </div>
