@@ -1,6 +1,32 @@
 
-<?php include("includes/db.php"); ?>
-<?php include("includes/functions.php"); ?>
+<?php include('includes/db.php'); ?>
+<?php include('includes/functions.php'); ?>
+
+<?php 
+
+  if (isset($_GET['u_id'])) {
+    $u_id = $_GET['u_id'];
+  }
+
+  $query = "SELECT * FROM users WHERE id = $u_id";
+  $show_user_data = mysqli_query($connection, $query);
+
+  if (!$show_user_data) {
+    die("Query Failed!" . mysqli_error($connection));
+  }
+  else {
+    while ($row = mysqli_fetch_assoc($show_user_data)) {
+      $name     =   $row['name'];
+      $email    =   $row['email'];
+      $gender   =   $row['gender'];
+      $city     =   $row['city'];
+      $state    =   $row['state'];
+      $address  =   $row['address'];
+      $pincode  =   $row['pincode'];
+    }
+  }
+
+?>
 
 <?php session_start(); ?>
 
@@ -108,24 +134,24 @@
                   <form action="" method="post">
                     <div class="form-group">
                       <label for="name">NAME:</label>
-                      <input type="text" class="form-control" value="" id="name" disabled>
+                      <input type="text" class="form-control" value="<?php echo $name; ?>" id="name" disabled>
                     </div>
                     <div class="form-group">
                       <label for="emailaddress">EMAIL ADDRESS:</label>
-                      <input type="email" class="form-control" id="emailaddress" disabled>
+                      <input type="email" class="form-control" value="<?php echo $email; ?>" id="emailaddress" disabled>
                       <small class="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
                     <div class="row">
                       <div class="col-md-8">
                         <div class="form-group">
                           <label for="address">ADDRESS:</label>
-                          <input type="text" class="form-control" id="address" placeholder="Enter your address" name="address">
+                          <input type="text" class="form-control" value="<?php echo $address; ?>" id="address" placeholder="Enter your address" name="address">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label for="pincode">PINCODE:</label>
-                          <input type="text" class="form-control" id="pincode" placeholder="Enter your pincode" name="pincode">
+                          <input type="text" class="form-control" value="<?php echo $pincode; ?>" id="pincode" placeholder="Enter your pincode" name="pincode">
                         </div>
                       </div>
                     </div>
@@ -144,13 +170,13 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label for="city">CITY:</label>
-                          <input class="form-control" type="text" id="city" placeholder="Enter your city" name="city">
+                          <input class="form-control" value="<?php echo $city; ?>" type="text" id="city" placeholder="Enter your city" name="city">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label for="state">STATE:</label>
-                          <input class="form-control" type="text" id="state" placeholder="Enter your state" name="state">
+                          <input class="form-control" value="<?php echo $state; ?>" type="text" id="state" placeholder="Enter your state" name="state">
                         </div>
                       </div>
                     </div> 

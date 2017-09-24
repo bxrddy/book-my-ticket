@@ -49,16 +49,17 @@
               <?php 
 
                 if (isset($_SESSION['id'])) {
+                  $user_id = $_SESSION['id'];
                   echo
-                      '<li class="nav-item active">
-                        <a class="nav-link active" href=""> HOME</a>
+                      "<li class=\"nav-item active\">
+                        <a class=\"nav-link active\" href=''> HOME</a>
                        </li>
-                       <li class="nav-item active">
-                        <a class="nav-link active" href="bookTicket.php"> BOOK TICKET</a>
+                       <li class=\"nav-item active\">
+                        <a class=\"nav-link active\" href=\"bookTicket.php\"> BOOK TICKET</a>
                        </li>
-                       <li class="nav-item active">
-                        <a class="nav-link active" href="user.php"> USER PROFILE</a>
-                       </li>';
+                       <li class=\"nav-item active\">
+                        <a class=\"nav-link active\" href='user.php?u_id=$user_id'> USER PROFILE</a>
+                       </li>";
                 }
 
               ?>
