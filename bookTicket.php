@@ -45,23 +45,23 @@
 
 		    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
 		      	<ul class="navbar-nav mr-auto">
-		        	<li class="nav-item active">
-		            	<a class="nav-link active" href="index.php"> HOME</a>
-		          	</li>
-		          	<!-- <li class="nav-item dropdown active">
-		            	<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> SERVICES</a>
-		            	<div class="dropdown-menu" aria-labelledby="dropdown01">
-		             		<a class="dropdown-item" href="#">Train</a>
-		              		<a class="dropdown-item" href="#">Bus</a>
-		              		<a class="dropdown-item" href="#">Metro</a>
-		            	</div>
-		          	</li> -->
-                <li class="nav-item active">
-                  <a class="nav-link active"> BOOK TICKET</a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link active" href="user.php"> USER PROFILE</a>
-                </li>
+		        	<?php 
+
+                if (isset($_SESSION['id'])) {
+                  $user_id = $_SESSION['id'];
+                  echo
+                      "<li class=\"nav-item active\">
+                        <a class=\"nav-link active\" href=''> HOME</a>
+                       </li>
+                       <li class=\"nav-item active\">
+                        <a class=\"nav-link active\" href=\"bookTicket.php\"> BOOK TICKET</a>
+                       </li>
+                       <li class=\"nav-item active\">
+                        <a class=\"nav-link active\" href='user.php?u_id=$user_id'> USER PROFILE</a>
+                       </li>";
+                }
+
+              ?>
 		        </ul>
 
             <?php 
@@ -89,7 +89,80 @@
     </nav>
 
     <div class="container">
-      
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="container" id="padtopuser">
+            <div class="card">
+              <h5 class="card-header">
+                <center><strong>BOOK TICKET</strong></center>
+              </h5>
+              <div class="card-block">
+                <h6 class="card-title">Enter your source and destination ...</h6>
+                <hr>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <form>
+                      <div class="form-group">
+                        <label for="source">Source</label>
+                        <input type="text" class="form-control" id="source" placeholder="Enter Source">
+                      </div>
+                    </form>
+                  </div>
+                  <div class="col-lg-6">
+                    <form>
+                      <div class="form-group">
+                        <label for="dest">Destination</label>
+                        <input type="text" class="form-control" id="dest" placeholder="Enter Destination">
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="container">
+                    <div id="map" style="height: 300px; width: 100%;">
+                    <!-- This is the section where the map will be displayed -->
+                    </div>
+                    <br>
+                    <script>
+                      function initMap() {
+                        // Specify the latitude and longitude of the region
+                        var place = {lat: 19.0428, lng: 73.0230};
+
+                        // google.maps.Map() => Creates a new google maps object
+                        // document.getElementById() => Add this to find the map div on the web page
+                        var map  = new google.maps.Map(document.getElementById('map'), {
+                          zoom: 17,         // Set a zoom level
+                          center: place
+                        });
+                        var marker = new google.maps.Marker({
+                          position: place,   // This property sets the position of the marker
+                          map: map
+                        });
+                      }
+                    </script>
+                  </div>
+                </div>
+                <a href="#" class="btn btn-primary">SEARCH</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+        <div class="container" id="padtopuser">
+         
+          <div class="card">
+            <h5 class="card-header" align="center"><strong>WALLET</strong></h5>
+            <img src="images/wallet3.png">
+            <div class="card-block">
+              <h3 class="card-title text-center">Current Balance</h3>
+              <h2 class="card-text text-center"><strong><!-- &#x20B9; -->$890</strong></h2>
+              <center><button type="submit" class="btn btn-primary" id="recharge" style="margin-bottom: 20%;">RECHARGE NOW</button></center>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      </div>
     <hr>
       <footer>
         <p>&copy; Brijesh 2017</p>
@@ -107,6 +180,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+   <!-- The async defer attribute allows the browser to continue rendering the rest of your page while the API loads -->
+   <!-- The callback parameter executes the initMap function after the API loads -->
+   <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
 
   </body>
 </html>
