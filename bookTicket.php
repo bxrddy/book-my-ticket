@@ -51,7 +51,7 @@
                   $user_id = $_SESSION['id'];
                   echo
                       "<li class=\"nav-item active\">
-                        <a class=\"nav-link active\" href=''> HOME</a>
+                        <a class=\"nav-link active\" href='index.php'> HOME</a>
                        </li>
                        <li class=\"nav-item active\">
                         <a class=\"nav-link active\" href=\"bookTicket.php\"> BOOK TICKET</a>
@@ -183,7 +183,7 @@
 
    <!-- The async defer attribute allows the browser to continue rendering the rest of your page while the API loads -->
    <!-- The callback parameter executes the initMap function after the API loads -->
-   <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
+   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOQFOPCVBm3_doNcda39oPes3kh5eihqc&callback=initMap"></script>
 
   </body>
 </html>
