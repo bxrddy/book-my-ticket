@@ -16,8 +16,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -202,11 +200,11 @@ desired effect
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        <i class="fa fa-google-wallet la-lg"></i>&nbsp; Transactions
+        <i class="fa fa fa-user la-lg"></i>&nbsp; All Users
         <small></small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-google-wallet"></i> Transactions</a></li>
+        <li><a href="#"><i class="fa fa fa-user"></i> All Users</a></li>
       </ol>
     </section>
 
@@ -217,81 +215,91 @@ desired effect
         | Your Page Content Here |
         -------------------------->
 
-            <!-- Main content -->
-      <section class="content">
         <div class="row">
-          <div class="col-xs-12">
-            <div class="box">
-              <div class="box-header">
-                <h3 class="box-title">Recent Transactions:</h3>
-              </div>
-              <!-- /.box-header -->
-              <div class="box-body table-responsive">
-                <table id="example2" class="table table-bordered table-hover">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>USERNAME</th>
-                      <th>SOURCE</th>
-                      <th>DESTINATION</th>
-                      <th>RETURN</th>
-                      <th>COST</th>
-                      <th>TIMESTAMP</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Brijesh</td>
-                      <td>Tilak Nagar</td>
-                      <td>Nerul</td>
-                      <td>Yes</td>
-                      <td>&#x20B9; 20</td>
-                      <td>09/11/2017</td>
-                    </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Omkar</td>
-                      <td>Badlapur</td>
-                      <td>Nerul</td>
-                      <td>Yes</td>
-                      <td>&#x20B9; 60</td>
-                      <td>10/11/2017</td>
-                    </tr>
-                    <tr>
-                      <td>3</td>
-                      <td>Arpita</td>
-                      <td>Airoli</td>
-                      <td>Nerul</td>
-                      <td>Yes</td>
-                      <td>&#x20B9; 25</td>
-                      <td>11/11/2017</td>
-                    </tr>
-                    <tr>
-                      <td>4</td>
-                      <td>Siddhesh</td>
-                      <td>Chembur</td>
-                      <td>Nerul</td>
-                      <td>No</td>
-                      <td>&#x20B9; 10</td>
-                      <td>09/11/2017</td>
-                    </tr>
-                    <tr>
-                      <td>5</td>
-                      <td>Mohit</td>
-                      <td>Tilak Nagar</td>
-                      <td>Nerul</td>
-                      <td>No</td>
-                      <td>&#x20B9; 10</td>
-                      <td>12/11/2017</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+
+          <div class="col-md-3">
+            <div class="box box-widget widget-user">
+                <!-- Add bg color to the header using any of the bg-* classes -->
+                <div class="widget-user-header">
+                  <div class="row">
+
+                    <div class="col-sm-6">
+                      <h3 class="widget-user-username" style="font-weight: 500">Brijesh</h3>     
+                    </div>
+
+                    <div class="col-sm-6" align="right">
+                      <h4 class="widget-user-username">Balance</h4>
+                      <h3 class="widget-user-desc" style="margin-top: 7px;">$890</h3>
+                    </div>
+
+                  </div>
+                </div>
             </div>
           </div>
+
+          <div class="col-md-3">
+            <div class="box box-widget widget-user">
+                <!-- Add bg color to the header using any of the bg-* classes -->
+                <div class="widget-user-header">
+                  <div class="row">
+
+                    <div class="col-sm-6">
+                      <h3 class="widget-user-username" style="font-weight: 500">Ronaldo</h3>     
+                    </div>
+
+                    <div class="col-sm-6" align="right">
+                      <h4 class="widget-user-username">Balance</h4>
+                      <h3 class="widget-user-desc" style="margin-top: 7px;">$1870</h3>
+                    </div>
+
+                  </div>
+                </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="box box-widget widget-user">
+                <!-- Add bg color to the header using any of the bg-* classes -->
+                <div class="widget-user-header">
+                  <div class="row">
+
+                    <div class="col-sm-6">
+                      <h3 class="widget-user-username" style="font-weight: 500">Messi</h3>     
+                    </div>
+
+                    <div class="col-sm-6" align="right">
+                      <h4 class="widget-user-username">Balance</h4>
+                      <h3 class="widget-user-desc" style="margin-top: 7px;">$990</h3>
+                    </div>
+
+                  </div>
+                </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="box box-widget widget-user">
+                <!-- Add bg color to the header using any of the bg-* classes -->
+                <div class="widget-user-header">
+                  <div class="row">
+
+                    <div class="col-sm-6">
+                      <h3 class="widget-user-username" style="font-weight: 500">Mark</h3>     
+                    </div>
+
+                    <div class="col-sm-6" align="right">
+                      <h4 class="widget-user-username">Balance</h4>
+                      <h3 class="widget-user-desc" style="margin-top: 7px;">$770</h3>
+                    </div>
+
+                  </div>
+                </div>
+            </div>
+          </div>
+
         </div>
-      </section>
+
+
 
     </section>
     <!-- /.content -->
@@ -377,26 +385,9 @@ desired effect
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="dist/js/adminlte.min.js"></script>
-<!-- DataTables -->
-<script src="bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <!-- SlimScroll -->
 <script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="bower_components/fastclick/lib/fastclick.js"></script>
-<!-- page script -->
-<script>
-  $(function () {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  })
-</script>
 </body>
 </html>
