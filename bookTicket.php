@@ -64,6 +64,7 @@
         padding: 0 11px 0 13px;
         text-overflow: ellipsis;
         width: 200px;
+        height: 40px;
       }
 
       #origin-input:focus,
@@ -143,6 +144,8 @@
 		
     </nav>
 
+    <br id="padtopuser">
+
     <div class="container">
       <div class="row">
         <div class="col-lg-8">
@@ -153,12 +156,12 @@
               </h5>
               <div class="card-block">
                 <h6 class="card-title">Enter your source and destination ...</h6>
-                <hr>
+                <hr style="width: 85%;">
                 <div class="row">
                   <div class="col-lg-6">
                     <form>
                       <div class="form-group">
-                        <label for="origin-input">Source</label>
+                        
                         <input type="text" class="form-control" id="origin-input" placeholder="Enter Source">
                       </div>
                     </form>
@@ -166,7 +169,7 @@
                   <div class="col-lg-6">
                     <form>
                       <div class="form-group">
-                        <label for="destination-input">Destination</label>
+                        
                         <input type="text" class="form-control" id="destination-input" placeholder="Enter Destination">
                       </div>
                     </form>
@@ -176,19 +179,19 @@
                   <div class="col-lg-12">
                     <div id="mode-selector" class="form-group">
                       <input type="radio" name="type" id="changemode-walking" checked="checked">
-                      <label for="changemode-walking">Walking</label>
+                      <label for="changemode-walking" style="cursor: pointer;">Walking</label>
 
                       <input type="radio" name="type" id="changemode-transit">
-                      <label for="changemode-transit">Transit</label>
+                      <label for="changemode-transit" style="cursor: pointer;">Transit</label>
 
                       <input type="radio" name="type" id="changemode-driving">
-                      <label for="changemode-driving">Driving</label>
+                      <label for="changemode-driving" style="cursor: pointer;">Driving</label>
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="container">
-                    <div id="map" style="height: 300px; width: 100%;">
+                    <div id="map" style="height: 400px; width: 100%;">
                     <!-- This is the section where the map will be displayed -->
                     </div>
                     <br>
@@ -201,7 +204,7 @@
                           var map = new google.maps.Map(document.getElementById('map'), {
                             mapTypeControl: false,
                             center: {lat: 19.0760, lng: 72.8777},
-                            zoom: 12
+                            zoom: 11
                           });
 
                           new AutocompleteDirectionsHandler(map);
@@ -297,25 +300,22 @@
           </div>
         </div>
         <div class="col-lg-4">
-        <div class="container" id="padtopuser">
-         
-          <div class="card">
-            <h5 class="card-header" align="center"><strong>WALLET</strong></h5>
-            <img src="images/wallet3.png">
-            <div class="card-block">
-              <h3 class="card-title text-center">Current Balance</h3>
-              <h2 class="card-text text-center"><strong><!-- &#x20B9; -->$890</strong></h2>
-              <center><button type="submit" class="btn btn-primary" id="recharge" style="margin-bottom: 20%;">RECHARGE NOW</button></center>
+          <div class="container" id="padtopuser">
+           
+            <div class="card">
+              <h5 class="card-header" align="center"><strong>WALLET</strong></h5>
+              <img src="images/wallet3.png">
+              <div class="card-block">
+                <h3 class="card-title text-center">Current Balance</h3>
+                <h2 class="card-text text-center"><strong><!-- &#x20B9; -->$890</strong></h2>
+                <center><a href="recharge.php"><button type="submit" class="btn btn-primary" id="recharge" style="margin-bottom: 32%;">RECHARGE NOW</button></a></center>
+              </div>
             </div>
-          </div>
 
+          </div>
         </div>
       </div>
-      </div>
-    <hr>
-      <footer>
-        <p>&copy; Brijesh 2017</p>
-      </footer>
+      <hr>
     </div>
 
 
