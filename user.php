@@ -203,7 +203,7 @@
             <div class="card-block">
               <h3 class="card-title text-center">Current Balance</h3>
               <h2 class="card-text text-center"><strong><!-- &#x20B9; -->$890</strong></h2>
-              <center><button type="submit" class="btn btn-primary" id="recharge">RECHARGE NOW</button></center>
+              <center><a href="recharge.php"><button type="submit" class="btn btn-primary" id="recharge">RECHARGE NOW</button></a></center>
             </div>
           </div>
 
