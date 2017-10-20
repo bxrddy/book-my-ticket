@@ -32,6 +32,61 @@
     <!-- Custom styles for this template -->
     <link href="css/custom.css" rel="stylesheet">
 
+    <style type="text/css">
+      
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      .controls {
+        margin-top: 10px;
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 32px;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      }
+
+      #origin-input,
+      #destination-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 200px;
+      }
+
+      #origin-input:focus,
+      #destination-input:focus {
+        border-color: #4d90fe;
+      }
+
+      #mode-selector {
+        color: #fff;
+        background-color: #4d90fe;
+        margin-left: 12px;
+        padding: 5px 11px 0px 11px;
+      }
+
+      #mode-selector label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+      }
+
+
+    </style>
+
   </head>
 
   <body>
@@ -103,18 +158,32 @@
                   <div class="col-lg-6">
                     <form>
                       <div class="form-group">
-                        <label for="source">Source</label>
-                        <input type="text" class="form-control" id="source" placeholder="Enter Source">
+                        <label for="origin-input">Source</label>
+                        <input type="text" class="form-control" id="origin-input" placeholder="Enter Source">
                       </div>
                     </form>
                   </div>
                   <div class="col-lg-6">
                     <form>
                       <div class="form-group">
-                        <label for="dest">Destination</label>
-                        <input type="text" class="form-control" id="dest" placeholder="Enter Destination">
+                        <label for="destination-input">Destination</label>
+                        <input type="text" class="form-control" id="destination-input" placeholder="Enter Destination">
                       </div>
                     </form>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div id="mode-selector" class="form-group">
+                      <input type="radio" name="type" id="changemode-walking" checked="checked">
+                      <label for="changemode-walking">Walking</label>
+
+                      <input type="radio" name="type" id="changemode-transit">
+                      <label for="changemode-transit">Transit</label>
+
+                      <input type="radio" name="type" id="changemode-driving">
+                      <label for="changemode-driving">Driving</label>
+                    </div>
                   </div>
                 </div>
                 <div class="row">
@@ -123,23 +192,103 @@
                     <!-- This is the section where the map will be displayed -->
                     </div>
                     <br>
-                    <script>
-                      function initMap() {
-                        // Specify the latitude and longitude of the region
-                        var place = {lat: 19.0428, lng: 73.0230};
+                     <script>
+                        // This example requires the Places library. Include the libraries=places
+                        // parameter when you first load the API. For example:
+                        // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-                        // google.maps.Map() => Creates a new google maps object
-                        // document.getElementById() => Add this to find the map div on the web page
-                        var map  = new google.maps.Map(document.getElementById('map'), {
-                          zoom: 17,         // Set a zoom level
-                          center: place
-                        });
-                        var marker = new google.maps.Marker({
-                          position: place,   // This property sets the position of the marker
-                          map: map
-                        });
-                      }
-                    </script>
+                        function initMap() {
+                          var map = new google.maps.Map(document.getElementById('map'), {
+                            mapTypeControl: false,
+                            center: {lat: 19.0760, lng: 72.8777},
+                            zoom: 12
+                          });
+
+                          new AutocompleteDirectionsHandler(map);
+                        }
+
+                         /**
+                          * @constructor
+                         */
+                        function AutocompleteDirectionsHandler(map) {
+                          this.map = map;
+                          this.originPlaceId = null;
+                          this.destinationPlaceId = null;
+                          this.travelMode = 'WALKING';
+                          var originInput = document.getElementById('origin-input');
+                          var destinationInput = document.getElementById('destination-input');
+                          var modeSelector = document.getElementById('mode-selector');
+                          this.directionsService = new google.maps.DirectionsService;
+                          this.directionsDisplay = new google.maps.DirectionsRenderer;
+                          this.directionsDisplay.setMap(map);
+
+                          var originAutocomplete = new google.maps.places.Autocomplete(
+                              originInput, {placeIdOnly: true});
+                          var destinationAutocomplete = new google.maps.places.Autocomplete(
+                              destinationInput, {placeIdOnly: true});
+
+                          this.setupClickListener('changemode-walking', 'WALKING');
+                          this.setupClickListener('changemode-transit', 'TRANSIT');
+                          this.setupClickListener('changemode-driving', 'DRIVING');
+
+                          this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
+                          this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
+
+                          this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
+                          this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
+                          this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
+                        }
+
+                        // Sets a listener on a radio button to change the filter type on Places
+                        // Autocomplete.
+                        AutocompleteDirectionsHandler.prototype.setupClickListener = function(id, mode) {
+                          var radioButton = document.getElementById(id);
+                          var me = this;
+                          radioButton.addEventListener('click', function() {
+                            me.travelMode = mode;
+                            me.route();
+                          });
+                        };
+
+                        AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(autocomplete, mode) {
+                          var me = this;
+                          autocomplete.bindTo('bounds', this.map);
+                          autocomplete.addListener('place_changed', function() {
+                            var place = autocomplete.getPlace();
+                            if (!place.place_id) {
+                              window.alert("Please select an option from the dropdown list.");
+                              return;
+                            }
+                            if (mode === 'ORIG') {
+                              me.originPlaceId = place.place_id;
+                            } else {
+                              me.destinationPlaceId = place.place_id;
+                            }
+                            me.route();
+                          });
+
+                        };
+
+                        AutocompleteDirectionsHandler.prototype.route = function() {
+                          if (!this.originPlaceId || !this.destinationPlaceId) {
+                            return;
+                          }
+                          var me = this;
+
+                          this.directionsService.route({
+                            origin: {'placeId': this.originPlaceId},
+                            destination: {'placeId': this.destinationPlaceId},
+                            travelMode: this.travelMode
+                          }, function(response, status) {
+                            if (status === 'OK') {
+                              me.directionsDisplay.setDirections(response);
+                            } else {
+                              window.alert('Directions request failed due to ' + status);
+                            }
+                          });
+                        };
+
+                      </script>
                   </div>
                 </div>
                 <a href="#" class="btn btn-primary">SEARCH</a>
@@ -175,15 +324,13 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
    <!-- The async defer attribute allows the browser to continue rendering the rest of your page while the API loads -->
    <!-- The callback parameter executes the initMap function after the API loads -->
-   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOQFOPCVBm3_doNcda39oPes3kh5eihqc&callback=initMap"></script>
+   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDoycDkBLOTsF7fUQMPmwDh9nZegklADFM&libraries=places&callback=initMap" async defer></script>
 
   </body>
 </html>
