@@ -4,6 +4,24 @@
 
 <?php session_start(); ?>
 
+<?php 
+
+  $query = "SELECT * FROM fare WHERE id = 1";
+  $show_user_data = mysqli_query($connection, $query);
+
+  if (!$show_user_data) {
+    die("Query Failed!" . mysqli_error($connection));
+  }
+  else {
+    while ($row = mysqli_fetch_assoc($show_user_data)) {
+      $cost = $row['cost'];
+      $src  = $row['source'];
+      $dest = $row['destination'];
+    }
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,6 +69,19 @@
 
                 if (isset($_SESSION['id'])) {
                   $user_id = $_SESSION['id'];
+                  $query = "SELECT * FROM users WHERE id = $user_id";
+                  $show_user_data = mysqli_query($connection, $query);
+
+                  if (!$show_user_data) {
+                    die("Query Failed!" . mysqli_error($connection));
+                  }
+                  else {
+                    while ($row = mysqli_fetch_assoc($show_user_data)) {
+                      $address = $row['address'];
+                      $city    = $row['city'];
+                      $email   = $row['email'];
+                    }
+                  }
                   echo
                       "<li class=\"nav-item active\">
                         <a class=\"nav-link active\" href='index.php'> HOME</a>
@@ -112,14 +143,16 @@
                     To
                     <address>
                       <address>
-                        <strong>Brijesh</strong><br>
-                        Chembur, Mumbai<br>
-                        Email: brijesh.reddy15@siesgst.ac.in
+                        <strong><?php echo $_SESSION['username']; ?></strong><br>
+                        <?php echo $address; ?>, <?php echo $city; ?><br>
+                        <?php echo $email; ?>
                       </address>
                     </address>
+                    <span><h5><i class="fa fa-2x fa-opencart" aria-hidden="true"></i> <strong>&nbsp;&nbsp;PAID</strong></h5></span>
                   </div>
                 
                   <div class="col-lg-6">
+
                     <div class="table-responsive">
                       <table class="table table-striped table-hover">
                         <thead>
@@ -131,14 +164,15 @@
                         <tbody>
                           <tr>
                             <td>1</td>
-                            <td>Tilak Nagar</td>
-                            <td>Nerul</td>
-                            <td>$20</td>
+                            <td><?php echo $src; ?></td>
+                            <td><?php echo $dest; ?></td>
+                            <td><b>$<?php echo $cost; ?></b></td>
                           </tr>
                         </tbody>
                       </table>
                       <br>
                     </div>
+
                   </div>
 
                 </div>
