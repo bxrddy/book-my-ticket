@@ -23,6 +23,7 @@
       $state    =   $row['state'];
       $address  =   $row['address'];
       $pincode  =   $row['pincode'];
+      $balance  =   $row['balance'];
     }
   }
 
@@ -180,11 +181,6 @@
                         </div>
                       </div>
                     </div> 
-                    <div class="form-group">
-                      <!-- <label for="password">NEW PASSWORD:</label>
-                        <input type="password" class="form-control" id="password" placeholder="Enter new password"> -->
-                      <a href="">Change Password?</a>
-                    </div>
                      <button type="submit" class="btn btn-primary" id="registerSubmit" name="update">UPDATE</button>
                   </form>
                 </div>
@@ -202,7 +198,7 @@
             <img src="images/wallet3.png">
             <div class="card-block">
               <h3 class="card-title text-center">Current Balance</h3>
-              <h2 class="card-text text-center"><strong><!-- &#x20B9; -->$890</strong></h2>
+              <h2 class="card-text text-center"><strong><!-- &#x20B9; -->$<?php echo $balance; ?></strong></h2>
               <center><a href="recharge.php"><button type="submit" class="btn btn-primary" id="recharge">RECHARGE NOW</button></a></center>
             </div>
           </div>
