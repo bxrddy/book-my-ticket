@@ -52,6 +52,17 @@
 
                 if (isset($_SESSION['id'])) {
                   $user_id = $_SESSION['id'];
+                  $query = "SELECT * FROM users WHERE id = $user_id";
+                  $show_balance = mysqli_query($connection, $query);
+
+                  if (!$show_balance) {
+                    die("Query Failed!" . mysqli_error($connection));
+                  }
+                  else {
+                    while ($row = mysqli_fetch_assoc($show_balance)) {
+                      $balance  =   $row['balance'];
+                    }
+                  }
                   echo
                       "<li class=\"nav-item active\">
                         <a class=\"nav-link active\" href='index.php'> HOME</a>
@@ -113,29 +124,64 @@
                   <i class="fa fa-2x fa-cc-mastercard" aria-hidden="true"></i>
                 </div>
                 <hr>
-                <form>
+
+                <?php 
+
+                  if (isset($_POST['recharge'])) {
+                    $cardnumber =   $_POST['cardnumber'];
+                    $passcode   =   $_POST['passcode'];
+                    $amount     =   $_POST['amount'];
+
+                    if (empty($passcode) || empty($cardnumber) || empty($amount)) {
+                      echo "<div class='alert alert-danger' role='alert' align='center'>
+                              <strong>Oh snap!</strong> Please fill out all the fields.
+                            </div>";
+                    } elseif ($passcode != 111) {
+                      echo "<div class='alert alert-danger' role='alert' align='center'>
+                              <strong>Oh snap!</strong> You entered wrong Security Code.
+                            </div>";
+                    } else {
+                      if ($passcode == 111) {
+
+                        $balance = $balance + $amount;
+
+                        $query  = "UPDATE users SET ";
+                        $query .= "balance='$balance' ";
+                        $query .= "WHERE id = '$user_id'";
+                        $update_wallet = mysqli_query($connection, $query);
+
+                        echo "<div class='alert alert-success text-center' role='alert'>
+                                <strong>Success! </strong> Recharge successful
+                              </div>";
+                      }
+                    }
+                  }
+
+                ?>
+
+                <form method="post" action="">
                   <div class="form-group">
                     <label for="cardnumber">Card Number:</label>
-                    <input type="number" class="form-control" id="cardnumber" placeholder="&bull; &bull; &bull; &bull; &nbsp; &bull; &bull; &bull; &bull; &nbsp; &bull; &bull; &bull; &bull; &nbsp; &bull; &bull; &bull; &bull;">
+                    <input type="number" name="cardnumber" class="form-control" id="cardnumber" placeholder="&bull; &bull; &bull; &bull; &nbsp; &bull; &bull; &bull; &bull; &nbsp; &bull; &bull; &bull; &bull; &nbsp; &bull; &bull; &bull; &bull;">
                   </div>
                   <div class="row">
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label for="securitycode">Security Code:</label>
-                        <input type="password" class="form-control" id="securitycode" placeholder="x x x">
+                        <input type="password" name="passcode" class="form-control" id="securitycode" placeholder="x x x">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label for="amount">Amount:</label>
-                        <input type="text" class="form-control" id="amount" placeholder="eg: $720">
+                        <input type="number" name="amount" class="form-control" id="amount" placeholder="eg: $720">
                       </div>
                     </div>
                   </div>
+                <hr>
+                <button type="submit" name="recharge" class="btn btn-outline-primary btn-md btn-block" style="cursor: pointer; border-radius: 100px;"><i class="fa fa-lock" aria-hidden="true"></i> &nbsp;<b>CONFIRM</b></button>
+                <hr>
                 </form>
-                <hr>
-                <button type="button" class="btn btn-outline-primary btn-md btn-block" style="cursor: pointer; border-radius: 100px;"><i class="fa fa-lock" aria-hidden="true"></i> &nbsp;<b>CONFIRM</b></button>
-                <hr>
               </div>
             </div>
           </div>
