@@ -1,7 +1,7 @@
 
 <?php include("includes/db.php"); ?>
 <?php include("includes/functions.php"); ?>
-
+<?php ob_start(); ?>
 <?php session_start(); ?>
 
 <!DOCTYPE html>
@@ -105,6 +105,30 @@
 
                 if (isset($_SESSION['id'])) {
                   $user_id = $_SESSION['id'];
+                  $query = "SELECT * FROM users WHERE id = $user_id";
+                  $show_user_data = mysqli_query($connection, $query);
+
+                  if (!$show_user_data) {
+                    die("Query Failed!" . mysqli_error($connection));
+                  }
+                  else {
+                    while ($row = mysqli_fetch_assoc($show_user_data)) {
+                      $balance  =   $row['balance'];
+                    }
+                  }
+
+                  $query = "SELECT * FROM fare WHERE id = 1";
+                  $cost_query = mysqli_query($connection, $query);
+
+                  if (!$cost_query) {
+                    die("Query Failed!" . mysqli_error($connection));
+                  }
+                  else {
+                    while ($row = mysqli_fetch_assoc($cost_query)) {
+                      $cost  =  $row['cost'];
+                    }
+                  }
+                  
                   echo
                       "<li class=\"nav-item active\">
                         <a class=\"nav-link active\" href='index.php'> HOME</a>
@@ -157,24 +181,6 @@
               <div class="card-block">
                 <h6 class="card-title">Enter your source and destination ...</h6>
                 <hr style="width: 85%;">
-                <div class="row">
-                  <div class="col-lg-6">
-                    <form>
-                      <div class="form-group">
-                        
-                        <input type="text" class="form-control" id="origin-input" placeholder="Enter Source">
-                      </div>
-                    </form>
-                  </div>
-                  <div class="col-lg-6">
-                    <form>
-                      <div class="form-group">
-                        
-                        <input type="text" class="form-control" id="destination-input" placeholder="Enter Destination">
-                      </div>
-                    </form>
-                  </div>
-                </div>
                 <div class="row">
                   <div class="col-lg-12">
                     <div id="mode-selector" class="form-group">
@@ -294,7 +300,42 @@
                       </script>
                   </div>
                 </div>
-                <a href="#" class="btn btn-primary">SEARCH</a>
+                <form action="" method="post">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      
+                        <div class="form-group">
+                          <input type="text" name="sorc" class="form-control" id="origin-input" placeholder="Enter Source">
+                        </div>
+                      
+                    </div>
+                    <div class="col-lg-6">
+
+                        <div class="form-group">
+                          <input type="text" name="destn" class="form-control" id="destination-input" placeholder="Enter Destination">
+                        </div>
+
+                    </div>
+                  </div>
+                  <button class="btn btn-primary" name="pay" style="cursor: pointer;">Proceed / Pay  &raquo;</button>
+                </form>
+
+                <?php
+
+                  if (isset($_POST['pay'])) {
+
+                    header("Location: invoice.php");
+                    $balance = $balance - $cost;
+
+                    $query  = "UPDATE users SET ";
+                    $query .= "balance='$balance' ";
+                    $query .= "WHERE id = '$user_id'";
+                    $update_wallet = mysqli_query($connection, $query);
+
+                  }
+
+                ?>
+
               </div>
             </div>
           </div>
@@ -307,7 +348,7 @@
               <img src="images/wallet3.png">
               <div class="card-block">
                 <h3 class="card-title text-center">Current Balance</h3>
-                <h2 class="card-text text-center"><strong><!-- &#x20B9; -->$890</strong></h2>
+                <h2 class="card-text text-center"><strong><!-- &#x20B9; -->$<?php echo $balance; ?></strong></h2>
                 <center><a href="recharge.php"><button type="submit" class="btn btn-primary" id="recharge" style="margin-bottom: 32%;">RECHARGE NOW</button></a></center>
               </div>
             </div>
