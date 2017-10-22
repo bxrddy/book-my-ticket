@@ -12,7 +12,7 @@
 			echo 
 				"<div class='alert alert-danger text-center' role='alert'>
 					<strong>Oh snap!</strong> Change a few things up and try submitting again.
-				</div>" . mysqli_error($connection);
+				</div>";
 		}
 		else {
 			echo 
@@ -89,11 +89,17 @@
 					}
 					else {
 
+						if ($username == "Brijesh" && $password == "brijesh") {
+							header("Location: admin/index.php");
+						} else {
+
 						$_SESSION['id'] = $row['id'];
 						$_SESSION['username'] = $row['name'];
 
 						header("Location: index.php");
 						exit();
+
+						}
 
 					}
 				}
