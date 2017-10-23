@@ -93,7 +93,7 @@
             <form method="post" action="">
               <div class="form-group">
                 <label for="name">NAME:</label>
-                <input type="text" class="form-control" id="name" placeholder="Enter your name" name="name" required="true">
+                <input type="text" class="form-control" id="name" pattern="[a-zA-Z][a-zA-Z ]{2,}" title="Only letters allowed" placeholder="Enter your name" name="name" required="true">
               </div>
               <div class="form-group">
                 <label for="emailaddress">EMAIL ADDRESS:</label>
@@ -102,7 +102,7 @@
               </div>
               <div class="form-group">
                 <label for="password">PASSWORD:</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter new password" name="password" required="true">
+                <input type="password" class="form-control" id="password" name="password" pattern=".{6,}" title="Six or more characters"  required="true" placeholder="Enter new password">
               </div>
               <div class="form-check">
                 <label class="checkbox">
