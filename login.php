@@ -82,7 +82,7 @@
 	    			<form action="" method="post">
 		              <div class="form-group">
 		                <label for="name">USERNAME:</label>
-		                <input type="text" class="form-control" id="name" placeholder="Enter your username" required="true" name="username">
+		                <input type="text" pattern="[a-zA-Z][a-zA-Z ]{2,}" title="Enter your registered username" class="form-control" id="name" placeholder="Enter your username" required="true" name="username">
 		              </div>
 		              <div class="form-group">
 		                <label for="password">PASSWORD:</label>
