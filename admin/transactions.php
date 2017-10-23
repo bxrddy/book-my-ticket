@@ -200,7 +200,7 @@ desired effect
           </a>
           <ul class="treeview-menu">
             <li><a href="users.php"><i class="fa fa-circle-o"></i> View all users</a></li>
-            <li><a href="add_users.php"><i class="fa fa-circle-o"></i> Add new user</a></li>
+<!--             <li><a href="add_users.php"><i class="fa fa-circle-o"></i> Add new user</a></li> -->
           </ul>
         </li>
       </ul>
