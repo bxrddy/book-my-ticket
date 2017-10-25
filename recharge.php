@@ -53,14 +53,15 @@
                 if (isset($_SESSION['id'])) {
                   $user_id = $_SESSION['id'];
                   $query = "SELECT * FROM users WHERE id = $user_id";
-                  $show_balance = mysqli_query($connection, $query);
+                  $show_query = mysqli_query($connection, $query);
 
-                  if (!$show_balance) {
+                  if (!$show_query) {
                     die("Query Failed!" . mysqli_error($connection));
                   }
                   else {
-                    while ($row = mysqli_fetch_assoc($show_balance)) {
-                      $balance  =   $row['balance'];
+                    while ($row = mysqli_fetch_assoc($show_query)) {
+                      $balance      =   $row['balance'];
+                      $securitycode =   $row['security_code'];
                     }
                   }
                   echo
@@ -131,17 +132,18 @@
                     $cardnumber =   $_POST['cardnumber'];
                     $passcode   =   $_POST['passcode'];
                     $amount     =   $_POST['amount'];
+                    $security   =   $_POST['securitycode'];
 
                     if (empty($passcode) || empty($cardnumber) || empty($amount)) {
                       echo "<div class='alert alert-danger' role='alert' align='center'>
                               <strong>Oh snap!</strong> Please fill out all the fields.
                             </div>";
-                    } elseif ($passcode != 111) {
+                    } elseif (($passcode != 111) || ($securitycode != $security)) {
                       echo "<div class='alert alert-danger' role='alert' align='center'>
-                              <strong>Oh snap!</strong> You entered wrong Security Code.
+                              <strong>Oh snap!</strong> Please enter valid details.
                             </div>";
                     } else {
-                      if ($passcode == 111) {
+                      if (($passcode == 111) && ($securitycode == $security)) {
 
                         $balance = $balance + $amount;
 
@@ -160,21 +162,31 @@
                 ?>
 
                 <form method="post" action="">
-                  <div class="form-group">
-                    <label for="cardnumber">Card Number:</label>
-                    <input type="number" name="cardnumber" class="form-control" id="cardnumber" placeholder="&bull; &bull; &bull; &bull; &nbsp; &bull; &bull; &bull; &bull; &nbsp; &bull; &bull; &bull; &bull; &nbsp; &bull; &bull; &bull; &bull;">
-                  </div>
                   <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-8">
                       <div class="form-group">
-                        <label for="securitycode">Security Code:</label>
-                        <input type="password" name="passcode" class="form-control" id="securitycode" placeholder="x x x">
+                        <label for="cardnumber">Card Number:</label>
+                        <input type="number" name="cardnumber" class="form-control" id="cardnumber" placeholder="&bull; &bull; &bull; &bull; &nbsp; &bull; &bull; &bull; &bull; &nbsp; &bull; &bull; &bull; &bull; &nbsp; &bull; &bull; &bull; &bull;">
                       </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label for="cvv">CVV Number:</label>
+                        <input type="password" name="passcode" class="form-control" id="cvv" placeholder="x x x">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8">
                       <div class="form-group">
                         <label for="amount">Amount:</label>
                         <input type="number" name="amount" class="form-control" id="amount" placeholder="eg: $720">
+                      </div>
+                    </div>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <label for="securitycode">Security Code:</label>
+                        <input type="password" name="securitycode" class="form-control" id="securitycode" placeholder="x x x">
                       </div>
                     </div>
                   </div>
