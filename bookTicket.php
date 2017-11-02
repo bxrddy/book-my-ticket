@@ -90,7 +90,7 @@
 
   </head>
 
-  <body>
+  <body class="animated fadeIn">
 
     <nav class="navbar navbar-toggleable-md navbar-light fixed-top bg-faded">
     	
@@ -174,7 +174,7 @@
       <div class="row">
         <div class="col-lg-8">
           <div class="container" id="padtopuser">
-            <div class="card">
+            <div class="card animated fadeIn">
               <h5 class="card-header">
                 <center><strong>BOOK TICKET</strong></center>
               </h5>
