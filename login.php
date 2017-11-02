@@ -68,8 +68,8 @@
     </nav>
 
     <div class="container animated fadeIn">
-
     	<section id="padtop">
+    	<hr><br>
     	<center>
 	    	<div class="card">
 	  			<h3 class="card-header">Login Here...</h3>
@@ -98,12 +98,10 @@
 			</div>
 		</center>
 		</section>
-
+		<br>
    		<section id="footer">
 	  		<hr>
-	    	<footer>
-	    		<p>&copy; Brijesh 2017</p>
-	    	</footer>
+	  		<marquee><p class="" style="font-size: 14px;">With a mission to empower people to experience travel with ease, Book My Ticket invests in digital technology that helps take the friction out of travel.</p></marquee>
 	  	</section>
     </div> <!-- /container -->
 
