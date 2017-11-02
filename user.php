@@ -117,7 +117,7 @@
 
     <div class="container">
     <div class="row">
-      <div class="col-lg-8">
+      <div class="col-lg-8 animated pulse">
         <div class="container" id="padtopuser">
           <div class="card">
             <h5 class="card-header" align="center"><strong>USER PROFILE</strong></h5>
@@ -171,13 +171,18 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label for="city">CITY:</label>
-                          <input class="form-control" value="<?php echo $city; ?>" type="text" id="city" placeholder="Enter your city" name="city">
+                          <!-- <input class="form-control" value="<?php echo $city; ?>" type="text" id="city" placeholder="Enter your city" name="city"> -->
+                          <select class="form-control custom-select" id="city" name="city">
+                            <option selected hidden>Select</option>
+                            <option>Mumbai</option>
+                            <option>Navi Mumbai</option>
+                          </select>
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <label for="state">STATE:</label>
-                          <input class="form-control" value="<?php echo $state; ?>" type="text" id="state" placeholder="Enter your state" name="state">
+                          <input class="form-control" value="<?php echo $state; ?>" type="text" id="state" placeholder="Enter your state" name="state" disabled>
                         </div>
                       </div>
                     </div> 
@@ -190,7 +195,7 @@
           </div>
         </div> <!-- /container -->
       </div>
-      <div class="col-lg-4">
+      <div class="col-lg-4 animated pulse">
         <div class="container" id="padtopuser">
          
           <div class="card">
@@ -208,7 +213,7 @@
     </div>
     <hr>
       <footer>
-        <p>&copy; Brijesh 2017</p>
+        <p class=""><span><img src="images/ticket.png" height="22" width="25"></span>&nbsp; <strong>Book My Ticket</strong> | 2017</p>
       </footer>
     </div>
 
