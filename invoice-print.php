@@ -4,6 +4,24 @@
 
 <?php session_start(); ?>
 
+<?php 
+
+  $query = "SELECT * FROM fare WHERE id = 1";
+  $show_user_data = mysqli_query($connection, $query);
+
+  if (!$show_user_data) {
+    die("Query Failed!" . mysqli_error($connection));
+  }
+  else {
+    while ($row = mysqli_fetch_assoc($show_user_data)) {
+      $cost = $row['cost'];
+      $src  = $row['source'];
+      $dest = $row['destination'];
+    }
+  }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,11 +58,31 @@
 
     <div class="container">
 
+      <?php 
+
+                if (isset($_SESSION['id'])) {
+                  $user_id = $_SESSION['id'];
+                  $query = "SELECT * FROM users WHERE id = $user_id";
+                  $show_user_data = mysqli_query($connection, $query);
+
+                  if (!$show_user_data) {
+                    die("Query Failed!" . mysqli_error($connection));
+                  }
+                  else {
+                    while ($row = mysqli_fetch_assoc($show_user_data)) {
+                      $address = $row['address'];
+                      $city    = $row['city'];
+                      $email   = $row['email'];
+                    }
+                  }
+                }
+      ?>
+
       <br>
       <hr id="padtopuser">
       <br>
       <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12 animated fadeIn">
           <div class="container">
             <div class="card">
               <h5 class="card-header" style="background-color: #858585; color: white;">
@@ -59,9 +97,9 @@
                     To
                     <address>
                       <address>
-                        <strong>Brijesh</strong><br>
-                        Chembur, Mumbai<br>
-                        Email: brijesh.reddy15@siesgst.ac.in
+                        <strong><?php echo $_SESSION['username']; ?></strong><br>
+                        <?php echo $address; ?>, <?php echo $city; ?><br>
+                        <?php echo $email; ?>
                       </address>
                     </address>
                   </div>
@@ -78,9 +116,9 @@
                         <tbody>
                           <tr>
                             <td>1</td>
-                            <td>Tilak Nagar</td>
-                            <td>Nerul</td>
-                            <td>$20</td>
+                            <td><?php echo $src; ?></td>
+                            <td><?php echo $dest; ?></td>
+                            <td><b>$<?php echo $cost; ?></b></td>
                           </tr>
                         </tbody>
                       </table>
@@ -102,7 +140,7 @@
       <br>
     <hr>
       <footer>
-        <p>&copy; Brijesh 2017</p>
+        <p><span><img src="images/ticket.png" height="22" width="25"></span>&nbsp; <strong>Book My Ticket</strong> | 2017</p>
       </footer>
     </div>
 

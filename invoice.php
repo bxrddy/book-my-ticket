@@ -128,7 +128,7 @@
       <br>
       <div class="row">
         <div class="col-lg-1"></div>
-        <div class="col-lg-10">
+        <div class="col-lg-10 animated flipInX">
           <div class="container">
             <div class="card">
               <h5 class="card-header" style="background-color: #858585; color: white;">
@@ -192,8 +192,8 @@
       </div>
       <br>
     <hr>
-      <footer>
-        <p>&copy; Brijesh 2017</p>
+      <footer class="">
+        <p><span><img src="images/ticket.png" height="22" width="25"></span>&nbsp; <strong>Book My Ticket</strong> | 2017</p>
       </footer>
     </div>
 
