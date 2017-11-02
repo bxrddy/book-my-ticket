@@ -109,8 +109,8 @@
 
       <div class="row">
         <div class="col-lg-3"></div>
-        <div class="col-lg-6">
-          <div class="container" id="padtopuser"> 
+        <div class="col-lg-6 animated pulse">
+          <div class="container" id="padtopuser">
             <div class="card">
               <h5 class="card-header" style="background-color: #f7f7f7;">
                 <center><strong>RECHARGE</strong></center>
@@ -201,9 +201,9 @@
         <div class="col-lg-3"></div>
       </div>
       <br>
-      <hr>
-      <footer>
-        <p>&copy; Brijesh 2017</p>
+      <footer class="animated fadeIn">
+        <hr>
+        <center><p class="" style="font-size: 14px;"></p><blockquote>Wealth is the ability to fully experience life.</blockquote></center>
       </footer>
     </div>
 
