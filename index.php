@@ -125,10 +125,7 @@
         </div>
         </center>
       <hr>
-
-      <footer>
-        <p>&copy; Brijesh 2017</p>
-      </footer>
+      <br>
     </div> <!-- /container -->
 
 
